@@ -34,3 +34,14 @@ DELETE FROM student;
 DELETE FROM student WHERE id = 5;
 /*delete table rows with and operator*/
 DELETE FROM student WHERE name = 'Dasun' AND major = 'undecided';
+/*basic queries*/
+SELECT * FROM student;
+/*select specific rows values*/
+SELECT student.name,student.major FROM student;
+/*get valiues by alpahabetical oder*/
+SELECT student.name,student.major FROM student ORDER BY name;
+/*get all the values desinding order*/
+SELECT student.name,student.major FROM student ORDER BY name DESC;
+/*get all rows desnding order using primary key*/
+SELECT * FROM student ORDER BY student.id DESC
+
