@@ -44,4 +44,23 @@ SELECT student.name,student.major FROM student ORDER BY name;
 SELECT student.name,student.major FROM student ORDER BY name DESC;
 /*get all rows desnding order using primary key*/
 SELECT * FROM student ORDER BY student.id DESC
-
+/*oder by major frist and after student id*/
+SELECT * FROM `student` ORDER BY major, id;
+/*retrive specific number of rows*/
+SELECT * FROM `student` LIMIT 2;
+/*oder by and limit both togethr */
+SELECT * FROM `student` ORDER BY id DESC LIMIT 2;
+/*retrive specific colums using where*/
+SELECT name,major FROM student WHERE major = 'Chemistry';
+/*select with OR condition*/
+SELECT name,major FROM student WHERE major = 'Chemistry' OR major = 'Biology';
+/* "<>"" = not equal sigin in SQL*/
+SELECT name,major FROM student WHERE major <> 'Chemistry';
+/*select all the student less than 3 "<" less than operater in sql*/
+SELECT name,major FROM student WHERE id < 3;
+/*select with less than or equal and not equal*/
+SELECT name,major FROM student WHERE id <= 3 AND name <> 'ishan';
+/*compare one colu diffrent values*/
+SELECT * FROM student WHERE name IN ('ishan','supun');
+/* select where in an and together*/
+SELECT * FROM student WHERE name IN ('kasun','supun') AND id > 1 ;
