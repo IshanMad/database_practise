@@ -223,3 +223,30 @@ SELECT * FROM employee WHERE sex="F" AND birth_day > '1970-01-01';
 SELECT AVG(salary) FROM employee;
 --find the varage salary of male employees
 SELECT AVG(salary) FROM employee WHERE sex = 'M';
+--find sum of all emp salaries
+SELECT SUM(salary) FROM employee;
+--find out how many males and femals there are(Aggraion display data in more help full way)
+SELECT COUNT(sex),sex FROM employee GROUP BY sex;
+--find the total sales of each sales man
+SELECT SUM(total_sales), emp_id FROM works_with GROUP BY emp_id;
+--how much each client spend
+SELECT SUM(total_sales), client_id FROM works_with GROUP BY client_id;
+--how much each client spend order by with group by 
+SELECT SUM(total_sales), client_id FROM works_with GROUP BY client_id ORDER BY client_id DESC;
+--WILD CARDS
+--find client who is in LLC using like
+SELECT * FROM client WHERE client_name LIKE '%LLC';
+--find any branch suppliers who are in the lable business 
+SELECT * FROM branch_supplier where supplier_name LIKE '%Lable%';
+--find any employee bron on octomber _resperesent one character
+SELECT * FROM employee WHERE birth_daY LIKE '____-10%';
+--find any client who are schools
+SELECT * FROM client WHERE client_name LIKE '%school%';
+--Unions 
+--find a list of employee and branch names
+SELECT first_name FROM employee UNION SELECT branch_name FROM branch;
+--find a list of all clients and branch suppiers names
+SELECT client_name FROM client UNION SELECT supplier_name FROM branch_supplier;
+--find a list of all money spent or earned by the company
+SELECT salary FROM employee UNION SELECT total_sales FROM works_with;
+--JOINS
