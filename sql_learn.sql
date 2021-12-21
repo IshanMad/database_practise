@@ -250,3 +250,23 @@ SELECT client_name FROM client UNION SELECT supplier_name FROM branch_supplier;
 --find a list of all money spent or earned by the company
 SELECT salary FROM employee UNION SELECT total_sales FROM works_with;
 --JOINS
+INSERT INTO branch VALUES (4,'Buffalo',NULL,NULL);
+SELECT * FROM branch;
+--FIND ALL BRANCHES AND THE NAMES OF THIER MANAGERS
+--INNERJOIN
+SELECT employee.emp_id, employee.frist_name,branch.branch_name FROM employee 
+JOIN branch ON employee.emp_id = branch.mgr_id;
+--LEFT JOIN (left join include all raws in the left table)
+SELECT employee.emp_id, employee.first_name,branch.branch_name FROM employee 
+LEFT JOIN branch ON employee.emp_id = branch.mgr_id;
+--RIGHT JOIN (iNCLUDE ALL ROWS IN THE RIGHT TABLE)
+SELECT employee.emp_id, employee.first_name,branch.branch_name FROM employee 
+RIGHT JOIN branch ON employee.emp_id = branch.mgr_id;
+--NESTED QUERIES
+--FIND NAMES OF ALL EMPLOYEES WHO AHVE SOLD OVER 30 000 TO A SINGLE CLIENT
+SELECT employee.first_name,employee.last_name FROM employee
+WHERE employee.emp_id IN( SELECT works_with.emp_id FROM works_with 
+WHERE works_with.total_sales > 30000);
+-- find all client who are handeld by the branch that michal scott manages assume you know Michel's ID;
+SELECT client.client_name FROM client WHERE client.branch_id = (
+SELECT branch.branch_id  FROM branch WHERE branch.mgr_id=102 LIMIT 1);
