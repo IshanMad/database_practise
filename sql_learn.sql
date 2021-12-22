@@ -270,3 +270,19 @@ WHERE works_with.total_sales > 30000);
 -- find all client who are handeld by the branch that michal scott manages assume you know Michel's ID;
 SELECT client.client_name FROM client WHERE client.branch_id = (
 SELECT branch.branch_id  FROM branch WHERE branch.mgr_id=102 LIMIT 1);
+--Example
+SELECT * FROM users WHERE users.id IN (
+SELECT user_classes.user_id FROM user_classes WHERE user_classes.clz_id IN(
+SELECT clzs.id FROM clzs WHERE clzs.user_id='1'));
+--TRIGGERS IN SQL
+DELIMITER $$
+CREATE 
+      TRIGGER my_trigger BEFORE INSERT
+      ON employee
+      FOR EACH ROW BEGIN
+                INSERT INTO trigger_test VALUES('added new employee');
+      END$$
+DELIMITER;  
+
+ INSERT INTO employee VALUES (109,'OSCAR','MARTINEZ','1969-02-19','M',6900,109,3);
+  SELECT * FROM trigger_test;
